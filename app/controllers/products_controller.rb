@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :set_type, only: [:new]
 
   def index
     @products = Product.all
@@ -10,6 +11,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @type = product_params[:type] if product_params[:type].present?
 
     respond_to do |format|
       if @product.save
@@ -22,8 +24,24 @@ class ProductsController < ApplicationController
 
   private
 
+  def set_type 
+    @type = type 
+  end
+
+  def type 
+    Product.types.include?(params[:type]) ? params[:type] : "Product"
+  end
+
+  def type_class 
+    type.constantize 
+  end
+
+  def set_product
+    @product = type_class.find(params[:id])
+  end
+
   def product_params
-    params.require(:product).permit(:name, :price, :inward_date, :type, :color)
+    params.require(type.underscore.to_sym).permit(:name, :price, :inward_date, :type, :color) 
   end
 
 end
