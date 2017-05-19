@@ -6,14 +6,19 @@ class Product < ApplicationRecord
 	validate :price_format_check
 
 	self.inheritance_column = :type  
+  scope :notebooks, -> { where(type: 'Notebook') }
+  scope :pens, -> { where(race: 'Pen') }
+
 	def self.types
    	%w(Notebook Pen)
   end
 
-  scope :notebooks, -> { where(type: 'Notebook') }
-  scope :pens, -> { where(race: 'Pen') }
-
+	def self.price_sum(product_type)
+		Product.where("type=?", product_type).sum(:price)
+	end
+		
   private
+	
 	def price_format_check
 		if price.present?
 			price_string = price.to_s
