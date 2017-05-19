@@ -1,8 +1,17 @@
+<script>
+ $(document).ready(function(){
+  $('.datepicker').datepicker( {
+    format: 'dd-mm-yyyy',
+      startDate: '-1m',
+      endDate: '0d'
+    });
+});
+</script>
+
 <%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
       <ul>
       <% product.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -23,7 +32,7 @@
 
   <div class="field">
     <%= form.label :inward_date %>
-    <%= form.date_select :inward_date, id: :product_inward_date %>
+    <%= form.text_field :inward_date, :class => "datepicker"%>
   </div>
   <%= form.hidden_field :type, :value => @type %>
 
@@ -33,7 +42,7 @@
       <%= form.text_field :color, id: :product_color %>
     </div>
   <% end %>
-
+  
   <div class="actions">
     <%= form.submit %>
   </div>

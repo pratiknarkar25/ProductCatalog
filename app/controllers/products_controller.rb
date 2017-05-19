@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_type, only: [:new]
 
   def index
-    @products = Product.all
+    @products = Product.all.decorate
   end
 
   def new
