@@ -1,2 +1,2 @@
-class Notebook < ApplicationRecord
+class Notebook < Product
 end

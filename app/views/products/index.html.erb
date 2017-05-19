@@ -20,11 +20,14 @@
         <td><%= product.name %></td>
         <td><%= product.price %></td>
         <td><%= product.inward_date %></td>
-        <td><%= product.type %></td>
-        <td><%= product.color %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<select onChange="window.location.href=this.value">
+    <option>Please select</option>
+    <option value="/products/new?type=Notebook">Notebook</option>
+    <option value="/products/new?type=Pen">Pen</option>
+</select>

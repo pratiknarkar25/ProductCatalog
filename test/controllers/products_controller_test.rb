@@ -23,26 +23,4 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to product_url(Product.last)
   end
 
-  test "should show product" do
-    get product_url(@product)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_product_url(@product)
-    assert_response :success
-  end
-
-  test "should update product" do
-    patch product_url(@product), params: { product: { color: @product.color, inward_date: @product.inward_date, name: @product.name, price: @product.price, type: @product.type } }
-    assert_redirected_to product_url(@product)
-  end
-
-  test "should destroy product" do
-    assert_difference('Product.count', -1) do
-      delete product_url(@product)
-    end
-
-    assert_redirected_to products_url
-  end
 end
