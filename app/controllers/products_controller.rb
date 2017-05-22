@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @type = product_params[:type] if product_params[:type].present?
-
+    
     respond_to do |format|
       if @product.save
         format.html { redirect_to products_url, notice: 'Product was successfully created.' }
@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   end
 
   def type 
-    Product.types.include?(params[:type]) ? params[:type] : "Product"
+    Product::TYPES.include?(params[:type]) ? params[:type] : "Product"
   end
 
   def type_class 

@@ -5,7 +5,7 @@
       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add Product
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
-        <% Product.types.each do |product_type| %>
+        <% Product::TYPES.each do |product_type| %>
           <li><a href="<%= new_product_path(type: product_type)%>"><%= product_type%></a></li>
         <% end %>  
       </ul>

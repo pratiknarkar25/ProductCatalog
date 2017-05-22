@@ -1,2 +1,2 @@
 class Notebook < Product
-end
+end	 
